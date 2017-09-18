@@ -1,0 +1,12 @@
+page-final {
+    ion-list.radio-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        ion-item {
+            flex: 1 1 auto;
+            width: auto;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<ion-content padding no-bounce>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-grid class="full-height">
+      <ion-row class="description">
+        <ion-col col-4>
+            <img src="./assets/images/logo.png" />
+        </ion-col>
+        <ion-col col-8>
+          <p>
+            Enter the settings for this device.
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="description">
+        <ion-col>
+          <h1>Device Setup</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row class="form-row">
+        <ion-col>
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Enter this Device Name</ion-label>
+              <ion-input formTab type="name" placeholder="Device Name" focuser formControlName="deviceName"></ion-input>
+            </label>
+            <div *ngIf="form.controls['deviceName'].errors && (form.controls['deviceName'].dirty)" class="form-error" color="danger" ion-text>
+              <div [hidden]="!form.controls['deviceName'].errors.required">You must enter the device name.</div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="buttons">
+        <ion-col>
+          <p>
+            <button type="button" ion-button round [hidden]="true" (click)="back()">Back</button>
+            <button type="submit" ion-button round [disabled]="!form.valid">Save Settings</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content no-bounce>
+  <ion-grid no-padding>
+    <ion-row class="top-row" align-items-start>
+      <ion-col class="logo-col" col-12 col-sm-8 align-items-center>
+        <img src="./assets/images/logo.png" />
+        <p>
+          <button [disabled]="changing" ion-button round (click)="start($event)" class="orange-button">Enter to win<span class="button-extra">&nbsp;this 55" toshiba tv</span></button>
+        </p>
+      </ion-col>
+      <ion-col class="tv-col" col-4>
+        <img src="./assets/images/tv.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row class="terms-row">
+      <p>
+        All information submitted will not be shared with any third parties and will only be used for the purposes 
+        of administering the contest and as an anonymous aggregate for marketing analysis and promotions. For more
+        information read <a (click)="openTerms()">our terms and conditions</a>.
+      </p>
+    </ion-row>
+    <ion-row class="footer-row">
+      <ion-col>
+        <img src="./assets/images/footer_logos.png" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

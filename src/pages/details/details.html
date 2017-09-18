@@ -1,0 +1,84 @@
+<ion-content padding no-bounce>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row class="description">
+        <ion-col col-4>
+            <img src="./assets/images/logo.png" />
+        </ion-col>
+        <ion-col col-8>
+          <p>
+            Please enter the following information to sign up for the Fairbank's Contest. Remember, we won't share your information with anyone else!
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="page-count">
+        <ion-col>
+          <div *ngFor="let page of totalPages" [ngClass]="{ 'passed': page < currentPage, 'active': page == currentPage }"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="form-row">
+        <ion-col>
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Enter Your Name</ion-label>
+              <ion-input formTab type="name" placeholder="Fullname" focuser formControlName="name" (keyup)="startTimer()"></ion-input>
+            </label>
+            <div *ngIf="form.controls['name'].errors && (form.controls['name'].dirty)" class="form-error" color="danger" ion-text>
+              <div [hidden]="!form.controls['name'].errors.required">You must enter your full name.</div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="form-row">
+        <ion-col>
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Enter Your Email</ion-label>
+              <ion-input formTab type="email" placeholder="Email" formControlName="email" (keyup)="startTimer()"></ion-input>
+            </label>
+            <div *ngIf="form.controls['email'].errors && (form.controls['email'].dirty)" class="form-error" color="danger" ion-text>
+              <div [hidden]="!form.controls['email'].errors.required">You must enter your email address.</div>
+              <div [hidden]="form.controls['email'].hasError('required') || !form.controls['email'].hasError('email')">You must enter a valid email address.</div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="form-row">
+        <ion-col>
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Enter Your Phone</ion-label>
+              <ion-input type="tel" placeholder="Phone" formControlName="phone" (keyup)="startTimer()"></ion-input>
+            </label>
+            <div *ngIf="form.controls['phone'].errors && (form.controls['phone'].dirty)" class="form-error" color="danger" ion-text>
+              <div [hidden]="!form.controls['phone'].errors.required">You must enter your phone number.</div>
+              <div [hidden]="form.controls['phone'].hasError('required') || !form.controls['phone'].hasError('invalidPhone')">You must enter a valid phone number.</div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="form-row" *ngIf="askingPostalCode">
+        <ion-col>
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Enter Your Postal Code</ion-label>
+              <ion-input type="name" placeholder="Postal code" formControlName="postalCode" (keyup)="startTimer()"></ion-input>
+            </label>
+            <div *ngIf="form.controls['postalCode'].errors && (form.controls['postalCode'].dirty)" class="form-error" color="danger" ion-text>
+              <div [hidden]="!form.controls['postalCode'].errors.required">You must enter your postal code.</div>
+              <div [hidden]="form.controls['postalCode'].hasError('required') || !form.controls['postalCode'].hasError('invalidPostalCode')">Your postal code is invalid.</div>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="buttons">
+        <ion-col>
+          <p>
+            <button type="button" ion-button round [disabled]="submitting" (click)="cancel()">Cancel</button>
+            <button type="submit" ion-button round [disabled]="!form.valid || submitting">Next</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

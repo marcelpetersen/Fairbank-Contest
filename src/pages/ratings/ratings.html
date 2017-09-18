@@ -1,0 +1,85 @@
+<ion-content padding no-bounce>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-grid class="full-height">
+      <ion-row class="description">
+        <ion-col col-4>
+            <img src="./assets/images/logo.png" />
+        </ion-col>
+        <ion-col col-8>
+          <p>
+            Please enter the following information to sign up for the Fairbank's Contest. Remember, we won't share your information with anyone else!
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="page-count">
+        <ion-col>
+          <div *ngFor="let page of totalPages" [ngClass]="{ 'passed': page < currentPage, 'active': page == currentPage }"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="how-hear-row">
+        <ion-col>
+          <h1>How did you hear about the festival? Check all that apply.</h1>
+          <ion-list class="how-hear">
+            <ion-item no-lines *ngFor="let control of form.controls['howHear'].controls; let i = index">
+              <ion-label>{{howHearLabels[i]}}</ion-label>
+              <ion-checkbox checked="false" [formControl]="control"></ion-checkbox>
+            </ion-item>
+            <ion-item no-lines [hidden]="!form.controls['howHear'].controls[10].value">
+              <ion-input data-nativekeyboard='{"type":"alphabet"}' type="text" placeholder="Other" formControlName="howHearOther" (keyup)="startTimer()"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How important were the FREE rides to your decision to attend?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="rateRides" (ionChange)="setRangeText('rateRides', rideOptions)">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['rateRides']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How would you rate the live music?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="rateMusic" (ionChange)="setRangeText('rateMusic')">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['rateMusic']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How would you rate the quality of the atmopshere?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="rateAtmosphere" (ionChange)="setRangeText('rateAtmosphere')">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['rateAtmosphere']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="buttons">
+        <ion-col>
+          <p>
+            <button type="button" ion-button round [disabled]="submitting" (click)="back()">Back</button>
+            <button type="submit" ion-button round [disabled]="!form.valid || submitting">Next</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

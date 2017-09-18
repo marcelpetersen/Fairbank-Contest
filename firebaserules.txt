@@ -1,0 +1,39 @@
+{
+  "rules": {
+    ".read": true,
+    "winners": {
+      ".read": true,
+    	".write": true,      
+    },
+    "entries": {
+      ".read": false,
+    	".write": true,
+      "$entryid": {
+        "phone": {
+          ".validate": "root.child('phoneLookup').child(newData.val().replace(' ', '').replace('(', '').replace(')', '').replace('-', '')).val() === $entryid"
+        },
+        "email": {
+          ".validate": "root.child('emailLookup').child(newData.val().replace('.', ',').toLowerCase()).val() === $entryid"
+        }
+    	}
+  	},
+    "phoneLookup": {
+      "$phone": {
+      	// not readable, cannot get a list of emails!
+      	// can only write if this email is not already in the db
+      	".write": "!data.exists() || !newData.exists()"
+      }
+    },
+    "emailLookup": {
+      "$email": {
+      	// not readable, cannot get a list of emails!
+      	// can only write if this email is not already in the db
+      	".write": "!data.exists() || !newData.exists()"
+      }
+    },
+    "users": {
+      ".read": true,
+      ".write": true,      
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<ion-content padding no-bounce>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-grid class="full-height">
+      <ion-row class="description">
+        <ion-col col-4>
+            <img src="./assets/images/logo.png" />
+        </ion-col>
+        <ion-col col-8>
+          <p>
+            Please enter the following information to sign up for the Fairbank's Contest. Remember, we won't share your information with anyone else!
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="page-count">
+        <ion-col>
+          <div *ngFor="let page of totalPages" [ngClass]="{ 'passed': page < currentPage, 'active': page == currentPage }"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="map-autocomplete">
+        <ion-col>
+          <h1>Where are you from? Enter your postal code or click on the map.</h1>
+          <ion-auto-complete #address [dataProvider]="geoService" (itemSelected)="onAddressSelected($event)"></ion-auto-complete>
+        </ion-col>
+      </ion-row>
+      <ion-row class="map-section">
+        <ion-col>
+          <div #map id="map"></div>  
+        </ion-col>
+      </ion-row>
+      <ion-row class="buttons">
+        <ion-col>
+          <p>
+            <button type="button" ion-button round [disabled]="submitting" (click)="back()">Back</button>
+            <button type="submit" ion-button round [disabled]="submitting">Next</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

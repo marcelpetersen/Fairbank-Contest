@@ -1,0 +1,21 @@
+page-ratings {
+    .row.how-hear-row {
+        height: 260px;
+    }
+
+    ion-list.how-hear {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        ion-item {
+            flex-grow: 0;
+            width: 30%;
+
+            .text-input {
+                border-bottom: 2px solid #FFFFFF;
+            }
+        }
+    }
+}

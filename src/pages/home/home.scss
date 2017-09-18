@@ -1,0 +1,82 @@
+page-home {
+    .grid {
+        height: 100%;
+
+        .top-row {
+            flex-grow: 1;
+            position: relative;
+            margin-top: 3em;
+            padding-top: 18.5em;
+
+            &:before {
+                content: '';
+                background: url('../assets/images/frontpage_gradient_bg.png') top right no-repeat;
+                background-size: contain;
+                background-position: center right;
+                position: absolute;
+                top: 250px;
+                right: 0px;
+                left: 0px;
+                height: 225px;
+            }
+            
+            .logo-col {
+                text-align: end;
+
+                img {
+                    margin-top: 2em;
+                    width: 85%;
+                }
+            }
+        }
+
+        .terms-row {
+            flex-grow: 0;
+            padding: 0em 3em;
+            color: #FFF;
+            font-size: 1.2em;
+            font-weight: 700;
+            font-style: italic;
+        }
+        
+        .footer-row {
+            flex-grow: 0;
+            padding: 2em 3em;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .button {
+        animation: pulsate 2s ease-out;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes pulsate {
+        0% { transform: scale(1, 1); opacity: 1;}
+        50% { transform: scale(0.95, 0.95); opacity: 0.9;}
+        100% { transform: scale(1, 1); opacity: 1;}
+    }
+
+    @media only screen and (max-width: 768px) {
+        .button {
+            font-size: 1.3em;
+        }        
+    }
+
+    @media only screen and (max-width: 576px) {
+        .top-row .logo-col {
+            text-align: center;
+        }
+
+        .button span.button-extra {
+            display: none;
+        }
+
+        .tv-col {
+            display: none;
+        }        
+    }    
+}

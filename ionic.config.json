@@ -1,0 +1,8 @@
+{
+  "name": "Flavours",
+  "app_id": "868957d7",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

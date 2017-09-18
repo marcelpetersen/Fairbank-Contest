@@ -1,0 +1,92 @@
+<ion-content padding no-bounce>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row class="description">
+        <ion-col col-4>
+            <img src="./assets/images/logo.png" />
+        </ion-col>
+        <ion-col col-8>
+          <p>
+            Please enter the following information to sign up for the Fairbank's Contest. Remember, we won't share your information with anyone else!
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="page-count">
+        <ion-col>
+          <div *ngFor="let page of totalPages" [ngClass]="{ 'passed': page < currentPage, 'active': page == currentPage }"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How would you rate the food?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="rateFood" (ionChange)="setRangeText('rateFood')">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['rateFood']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How would you rate the shopping?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="rateShopping" (ionChange)="setRangeText('rateShopping')">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['rateShopping']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <h1>How likely will you attend next year?</h1>
+          <ion-list>
+            <ion-item no-lines>
+              <ion-range min="1" max="5" step="1" snaps="true" formControlName="attendAgain" (ionChange)="setRangeText('attendAgain', attendOptions)">
+                <ion-icon range-left name="sad"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+          <span class="range-text">{{rangeText['attendAgain']}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h1>Household status?</h1>
+          <ion-list radio-group formControlName="householdStatus" class="radio-list">
+            <ion-item no-lines *ngFor="let householdOption of householdOptions; let i = index;">
+              <ion-label>{{householdNames[i]}}</ion-label>
+              <ion-radio checked="false" value="{{householdOption}}"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="range-item">
+          <ion-list>
+            <label ion-item>
+              <ion-label stacked>Do you have any suggestions or comments for next year?</ion-label>
+              <ion-input data-nativekeyboard='{"type":"alphabet"}' type="text" placeholder="Optional Comments" formControlName="comments" (keyup)="startTimer()"></ion-input>
+            </label>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="buttons">
+        <ion-col>
+          <p>
+            <button type="button" ion-button round [disabled]="submitting" (click)="back()">Back</button>
+            <button type="submit" ion-button round [disabled]="!form.valid || submitting">Finish</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
