@@ -20,7 +20,7 @@ sudo npm install -g ionic
 
 
 ### Setup
-* cd into _contest_ directory
+* cd into directory
 * run `npm install` on terminal, then
 * run `ionic serve -c -s -l`
 
